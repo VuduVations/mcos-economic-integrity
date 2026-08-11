@@ -9,7 +9,7 @@ Preprint v0.1 (drafted 2026-08-11). Companion to Paper 1
 - `main.tex` — manuscript source; build with `tectonic main.tex`
 - `make_figures.py` — regenerates `fig_econ.pdf`; reads every value from
   `artifacts/econ_report_2026-08-10.json` (falls back to the mcos-core copy),
-  nothing transcribed
+  nothing transcribed. Needs `matplotlib` (see `requirements.txt`)
 - `main.pdf`, `fig_econ.pdf` — current build
 - `artifacts/` — the run-of-record data package (copied from mcos-core
   `audits/4_model_accuracy/`, which remains the source of truth):
@@ -17,8 +17,12 @@ Preprint v0.1 (drafted 2026-08-11). Companion to Paper 1
     manuscript's numerical source of truth
   - `econ_ledgers/` — 4 raw per-attempt JSONL ledgers (one per ablation cell)
   - `results/` — 20 per-launch bench result JSONs (boards + agent_modes)
-  - `econ_analyze.py` — ledger analyzer that produced the report
-  - `run_econ_ablation.sh` — the committed run-of-record script
+  - `econ_analyze.py` — ledger analyzer that produced the report; running it
+    inside `artifacts/` regenerates the report from the ledgers and
+    `results/` (stdlib only)
+  - `run_econ_ablation.sh` — run-of-record PROVENANCE, not a portable
+    reproducer: it hardcodes the original machine's repo path and sources its
+    `.env`; it documents exactly what executed
   - `ECONOMIC_INTEGRITY_LEDGER.md` — the engineering ledger write-up
   - `SHA256SUMS` — manifest over all of the above
 

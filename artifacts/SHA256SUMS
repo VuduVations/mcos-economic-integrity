@@ -1,5 +1,5 @@
 45f968b2dfe7420f629581cf02d2676434ce77e39ec75358410e6931185e189d  ./ECONOMIC_INTEGRITY_LEDGER.md
-5df09c3db87d38b97dfdf46d315a30bea2d11df76a4104e58f22b35f7dd9b892  ./econ_analyze.py
+ec1dc5d1442beb9be0c07a3f470bb4d73f65b7dfb5c4894a8ff0e59735df13ac  ./econ_analyze.py
 733303817f1c385925b71d5b7ee9524197a8dea230325488a81d63b81795c027  ./econ_ledgers/econ_bundle_2026-08-10.jsonl
 aa9d8c3aac4dfd5d12b9fced479d33ae2abf70d8823d92040bcaf433222fea29  ./econ_ledgers/econ_proactive_2026-08-10.jsonl
 f4c38eea11ad986980f6c544dba05f556f54d0e7222f559f15dd8fb152ae650f  ./econ_ledgers/econ_pure_retry_2026-08-10.jsonl

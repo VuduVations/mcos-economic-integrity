@@ -57,7 +57,7 @@ for x, a, d in zip(xs, agent, debate):
 ax.set_xticks(list(xs)), ax.set_xticklabels(LABELS)
 ax.set_ylim(0.9, 1.85)
 ax.set_ylabel("IAF (attempts / logical jobs)")
-ax.set_title("(1) Invisible Attempt Factor", fontsize=9.5)
+ax.set_title("(1) Inference Amplification Factor", fontsize=9.5)
 ax.legend(frameon=False, fontsize=8)
 
 # ── Panel 2: ECI per layer ──

@@ -18,7 +18,7 @@ Measuring Attempt Amplification, Discarded Reasoning,\\
 and Retry Cost}
 
 \author{Sean Halverson\\VuduVations \textperiodcentered{} \texttt{vuduvations.io}\\\texttt{hello@vuduvations.io}}
-\date{August 2026 \quad (preprint v0.1)}
+\date{August 2026 \quad (preprint v0.2)}
 
 \begin{document}
 \maketitle
@@ -41,15 +41,19 @@ record per physical model call, carrying token counts including reasoning
 and prompt-cache splits, budgets, lever state, layer, outcome, and
 latency --- and re-run a four-cell budget/retry ablation
 ($n{=}10$ repetitions per cell, one provider, one night) with the ledger
-armed. We define two metrics over the ledger: the \emph{Invisible Attempt
-Factor} (\iaf{}), physical attempts per logical job, and the
+armed. We define two metrics over the ledger: the \emph{Inference
+Amplification Factor} (\iaf{}), physical attempts per logical job, and the
 \emph{Economic Contamination Index} (\eci{}), total spend over spend on
-attempts whose output was actually used. All four cells scored 9--10/10
-on a fixed 48-check benchmark; underneath, the attempt machinery differed
-by up to a factor of $1.7$. Proactive budget headroom \emph{measures} as
-prevention: \iaf{} $=1.000$ in both layers (127 agent jobs, 127
-attempts, one empty reply). Retry-based recovery reaches the same
-scoreboard with \iaf{} up to $1.70$ and \eci{} up to $1.96$ in the
+attempts whose output was actually used. All four cells were
+scoreboard-equivalent --- answer-key means of 46.8--47.4 of 48 checks
+and 9--10 of 10 execution-clean or recovered-clean repetitions;
+underneath, the attempt machinery differed by up to a factor of $1.7$.
+Proactive budget headroom \emph{measures} as prevention: one starved
+first attempt in 127 agent-layer jobs, and --- with the retry disabled,
+so no recovery could hide it --- no amplification at either recovery
+ring (\iaf{} $=1.000$ by direct enumeration). Retry-based recovery
+reaches an equivalent scoreboard with \iaf{} up to $1.70$ and \eci{} up
+to $1.96$ in the
 adversarial validation layer: in the worst cell, 48.9\% of that layer's
 spend bought attempts whose output was discarded --- and every discarded
 output token in the study was a reasoning token, the spend category no
@@ -103,18 +107,21 @@ legacy per-run token counters are deliberately unchanged, so the
 ledger-versus-legacy delta is itself a measurement of what conventional
 metering misses.
 \item \textbf{Two metrics with measured denominators}
-(Section~\ref{sec:framework}): the Invisible Attempt Factor (\iaf{}),
-physical attempts per logical job, computed per pipeline layer and never
-pooled across layers; and the Economic Contamination Index (\eci{}),
-total spend over spend on used attempts, where \emph{used} is defined
-exactly (the final attempt of a logical job, when non-empty).
+(Section~\ref{sec:framework}): the Inference Amplification Factor
+(\iaf{}), physical attempts per logical job, computed per pipeline layer
+and never pooled across layers; and the Economic Contamination Index
+(\eci{}), total spend over spend on used attempts, where \emph{used} is
+defined exactly (the final attempt of a logical job, when non-empty).
 \item \textbf{A measured four-cell ablation} (Sections~\ref{sec:design}--\ref{sec:results}):
 the companion paper's budget/retry ablation re-run with the ledger armed
 ($n{=}10$ per cell, DeepSeek v4-pro direct, 2026-08-10/11). Every cell
-scored 9--10/10; the cells' \iaf{} and \eci{} separated cleanly, and in
-the direction the companion paper's event counts predicted.
-\item \textbf{Three economic findings}: prevention is measurable as
-\iaf{} $= 1.000$ rather than inferable from absence of log lines
+was scoreboard-equivalent (answer-key means 46.8--47.4 of 48; 9--10 of
+10 execution-clean or recovered-clean repetitions); the cells' \iaf{}
+and \eci{} separated cleanly, and in the direction the companion
+paper's event counts predicted.
+\item \textbf{Three economic findings}: prevention is measurable by
+enumeration --- a counted starvation residual with no hidden recovery
+amplification --- rather than inferable from absence of log lines
 (Section~\ref{sec:prevention}); the adversarial validation layer, whose
 role calls run on small completion budgets, was the study's dominant
 amplifier, with up to half its spend discarded
@@ -173,6 +180,22 @@ remainder of this paper is the pricing.
 
 \section{The Economic Integrity Framework}\label{sec:framework}
 
+\textbf{Three layers of integrity.} A production result can be
+interrogated at three depths. \emph{Capability integrity}: did the
+answer satisfy the task? This is what the benchmark's 48-check answer
+key grades. \emph{Execution integrity}: did the intended model path
+produce it? This is the companion paper's degradation
+accounting~\cite{reliability} --- fallbacks, salvages, and retries that
+leave the answer intact while changing what produced it.
+\emph{Economic integrity}: how many paid physical attempts stood behind
+the accepted output? Each layer can pass while the next fails silently:
+a correct answer can come from a fallback, and a fallback-free run can
+have paid for twice the attempts its architecture diagram shows. This
+paper supplies the third layer's instrument and metrics; the four cells
+of Section~\ref{sec:results} are precisely a set of configurations that
+tie on the first layer, mostly tie on the second, and separate on the
+third.
+
 We define the metrics over an attempt ledger: a set of records, one per
 physical model call, each carrying a logical-job identity, an attempt
 number within that job, token counts, and an outcome.
@@ -186,8 +209,8 @@ job.
 \textbf{Physical attempt.} One HTTP round trip that was billed (or
 errored). A logical job has one or more physical attempts.
 
-\textbf{Invisible Attempt Factor.} For a set of logical jobs $J$ with
-physical attempts $A$,
+\textbf{Inference Amplification Factor.} For a set of logical jobs $J$
+with physical attempts $A$,
 \[
 \iaf{} = \frac{|A|}{|J|}.
 \]
@@ -334,9 +357,13 @@ carries its own denominators and no figure is offered as a rate.
 \section{Results}\label{sec:results}
 
 Table~\ref{tab:main} is the study's central result. All four cells were
-scoreboard-equivalent: every cell graded 9--10 of 10 repetitions clean
-on the 48-check benchmark (Table~\ref{tab:tiers}). The attempt
-machinery underneath was not equivalent.
+scoreboard-equivalent, in the two senses Table~\ref{tab:tiers} makes
+precise. On capability, answer-key totals ran 468--474 of 480 checks
+(cell means 46.8--47.4 of 48), and the differences do not order the
+cells --- the only cell with 10 of 10 execution-clean-or-recovered
+repetitions has the \emph{lowest} answer-key mean. On execution, every
+cell produced 9--10 of 10 repetitions that were execution-clean or
+recovered-clean. The attempt machinery underneath was not equivalent.
 
 \begin{table}[!htb]
 \centering\small
@@ -377,23 +404,27 @@ starved job was a zero-token transport error, hence discarded spend of
 
 \begin{table}[!htb]
 \centering\small
-\begin{tabular}{lcccr}
+\setlength{\tabcolsep}{4.5pt}
+\begin{tabular}{lccccr}
 \toprule
-Cell & First-attempt clean & Recovered clean & Degraded & Mean agent \$/rep \\
+Cell & Answer key (mean) & 1st-att.\ clean & Recovered clean & Degraded & Agent \$/rep \\
 \midrule
-reactive & 0 & 9 & 1 & 0.064--0.067 \\
-proactive & 9 & 0 & 1 & 0.065--0.068 \\
-pure retry & 0 & 9 & 1 & 0.055--0.066 \\
-bundle & 8 & 2 & 0 & 0.067--0.078 \\
+reactive & 470/480 \ (47.0) & 0 & 9 & 1 & 0.064--0.067 \\
+proactive & 474/480 \ (47.4) & 9 & 0 & 1 & 0.065--0.068 \\
+pure retry & 472/480 \ (47.2) & 0 & 9 & 1 & 0.055--0.066 \\
+bundle & 468/480 \ (46.8) & 8 & 2 & 0 & 0.067--0.078 \\
 \bottomrule
 \end{tabular}
-\caption{Per-repetition outcome tiers (ten-agent grading basis joined
-to per-repetition ledger cost). Every cell's scoreboard is
-9--10/10; only the bundle is 10/10 clean. Mean agent-layer cost per
-repetition is nearly flat across cells and tiers at tonight's event
-rates: the economic difference between the cells lives in
-Table~\ref{tab:main}'s debate rows and in attempt-count variance, not
-in the per-repetition agent bill.}
+\caption{Per-repetition scoreboards: answer-key totals (48-check
+benchmark, ten repetitions per cell) beside execution tiers (ten-agent
+grading basis joined to per-repetition ledger cost). The two are
+distinct measurements and neither orders the cells: the bundle is the
+only cell with zero degraded repetitions and also has the lowest
+answer-key mean. Mean agent-layer cost per repetition is nearly flat
+across cells and tiers at tonight's event rates: the economic
+difference between the cells lives in Table~\ref{tab:main}'s debate
+rows and in attempt-count variance, not in the per-repetition agent
+bill.}
 \label{tab:tiers}
 \end{table}
 
@@ -408,7 +439,7 @@ pooled; the dotted line at $1.0$ is the no-amplification floor that
 both proactive rows sit on. Panel 3 splits the adversarial validation
 layer's ledger-computed spend into used and discarded dollars: the two
 no-headroom cells discarded 37\% and 49\% of the layer's bill to reach
-the same scoreboard as the cells that discarded none.}
+a scoreboard equivalent to the cells that discarded none.}
 \label{fig:econ}
 \end{figure}
 
@@ -417,8 +448,9 @@ Four observations organize the rest of the paper.
 \textbf{(1) Scoreboard equivalence hid a $1.7\times$ attempt spread.}
 The reactive cell's debate layer made 202 physical calls to complete
 119 logical jobs (\iaf{} $=1.698$); the proactive cell's made 119 for
-119. Both cells graded 9/10. Nothing on the scoreboard, and nothing in
-legacy returned-attempt metering, distinguishes them.
+119. Both cells were scoreboard-equivalent (answer-key means 47.0 and
+47.4; nine of ten repetitions clean or recovered). Nothing on either
+scoreboard, and nothing in legacy returned-attempt metering, distinguishes them.
 
 \textbf{(2) Discarded spend concentrates where budgets are tight.} The
 adversarial validation layer runs its roles on small completion
@@ -454,19 +486,32 @@ first-attempt starvation to proactive headroom and characterized retry
 as insurance~\cite{reliability}. The ledger now prices that
 distinction, and closes a measurement blind spot in it.
 
-\textbf{Prevention measures as \iaf{} $=1.000$.} In the proactive cell
-the companion paper's ``zero starvation events'' claim had rested on
-the absence of a retry log line --- a line that \emph{cannot fire} in
-that cell, because the retry is the thing ablated. Absence of evidence
-from a disabled instrument is not evidence of absence. The ledger
-replaces the inference with enumeration: 127 agent-layer jobs, 127
-attempts, one empty reply (a zero-token transport error, a class no
-completion budget can prevent); 119 debate-layer jobs, 119 attempts,
-one starved. The claim survives direct measurement --- as 1-in-127,
-not zero, which is how such claims should be stated.
+\textbf{Prevention measures as a counted residual with no hidden
+amplification.} One caveat first: in the proactive cell the client
+retry is ablated, so inner-ring \iaf{} cannot exceed $1$ by
+construction --- \iaf{} $=1.000$ is not, by itself, the evidence. The
+evidence is three measured facts the ledger adds. First, the
+starvation residual is enumerated, not inferred: 127 agent-layer jobs,
+127 attempts, one empty reply (a zero-token transport error, a class
+no completion budget can prevent); 119 debate-layer jobs, 119
+attempts, one starved. The companion paper's ``zero starvation
+events'' claim had rested on the absence of a retry log line --- a
+line that \emph{cannot fire} in that cell, because the retry is the
+thing ablated; absence of evidence from a disabled instrument is not
+evidence of absence, and the ledger replaces that inference with
+enumeration. Second, the outer recovery ring did not engage: the
+validation orchestrator's re-asks register as extra logical jobs
+(Section~\ref{sec:instrumentation}), and the debate-layer job count
+sits at the baseline 119, not the 193 of the cell where inner
+recovery failed. Third, the two residual empties went unrecovered ---
+headroom without retry has no insurance, which is the bundle's
+argument. The claim survives direct measurement --- as 1-in-127, not
+zero, which is how such claims should be stated.
 
-\textbf{Recovery reaches the same scoreboard and pays for both
-attempts.} The reactive cell graded 9/10, the same as proactive. To
+\textbf{Recovery reaches an equivalent scoreboard and pays for both
+attempts.} The reactive cell's scoreboard was equivalent to
+proactive's (nine of ten repetitions clean or recovered; answer-key
+means 47.0 versus 47.4). To
 get there its debate layer paid for 202 attempts against 119 jobs,
 discarding \$0.106 of \$0.289 --- 36.5\% of that layer's bill --- while
 the proactive cell's debate layer discarded \$0.0006. On tonight's calm
@@ -482,9 +527,9 @@ construction (one attempt per job); recovery's cost is a random
 variable.
 
 \textbf{Retry still earns its place.} The bundle cell --- headroom plus
-retry --- was the only 10/10 cell, and its two first-attempt agent
-starvations were both recovered by the retry at a discarded cost of
-\$0.020. As in the companion study, the argument is not against retry;
+retry --- was the only cell with zero degraded repetitions, and its two
+first-attempt agent starvations were both recovered by the retry at a
+discarded cost of \$0.020. As in the companion study, the argument is not against retry;
 it is against retry \emph{as the mechanism} rather than as insurance
 behind prevention. The ledger's version: insurance premiums (bundle,
 \eci{} $\leq 1.03$) are cheap; using insurance as the primary mechanism
@@ -521,8 +566,8 @@ runs at the starved budget (pure retry), most inner retries fail (69
 of 88 unrecovered), the orchestrator re-asks, and the layer's job count
 itself inflates 1.6$\times$ (193 versus 110--119). The cell's debate
 layer thus paid three ways --- starved first attempts, starved inner
-retries, and outer re-asks --- to reach the same 9/10 scoreboard as
-every other cell. Teams adding adversarial validation, self-critique,
+retries, and outer re-asks --- to reach a scoreboard equivalent to
+every other cell's. Teams adding adversarial validation, self-critique,
 or judge layers to production pipelines should assume by default that
 those layers, not the primary agents, are where attempt amplification
 will concentrate, and should give their instruments layer identity so
@@ -602,11 +647,17 @@ completion tokens misses the majority of the bill; a scoreboard
 misses it by construction. The starved attempt is the extreme case: a
 bill consisting entirely of tokens no human or program will ever see.
 
-\textbf{Report \iaf{} and \eci{} alongside accuracy.} Both metrics
+\textbf{Report \iaf{} and \eci{} alongside accuracy.} Open-weight
+models and modern serving stacks have made inference increasingly
+\emph{controllable}; the complementary requirement this paper argues
+for is that it be \emph{accountable} --- as pipeline value migrates
+into harnesses, procedures, verification, and provenance, the attempt
+ledger belongs to that layer. Both metrics
 are cheap to compute from an attempt ledger, both have measured
 denominators, and both separate configurations that accuracy cannot.
-A benchmark row of the form ``9/10 clean, agent \iaf{} 1.00, debate
-\iaf{} 1.70, debate \eci{} 1.58'' says what ``9/10 clean'' hides:
+A benchmark row of the form ``47.0/48, 9/10 execution-clean, agent
+\iaf{} 1.00, debate \iaf{} 1.70, debate \eci{} 1.58'' says what the
+first two entries hide:
 which machine produced the score, and what the score cost.
 
 \section{Limitations}\label{sec:limitations}
@@ -643,11 +694,12 @@ cost figure from a retry-enabled pipeline is unattributable without
 attempt accounting. One ledger row per physical attempt --- with
 logical-job identity, layer identity, reasoning-token counts, and
 outcome --- was sufficient to measure what the previous study could
-only count: prevention measured as an \iaf{} of exactly one rather
-than inferred from a silent log, a validation layer quietly running
-at 1.7 times its diagrammed price,
+only count: prevention measured as a counted starvation residual with
+no hidden recovery amplification, rather than inferred from a silent
+log; a validation layer quietly running at 1.7 times its diagrammed
+price;
 half a layer's spend buying discarded thinking under a plausible
-misconfiguration, and a rescue rate that moved by a factor of three in
+misconfiguration; and a rescue rate that moved by a factor of three in
 two days under frozen configuration. All of it sat beneath four
 scoreboard-equivalent cells.
 
@@ -663,7 +715,16 @@ script (four cells, lever hygiene, balance-floor guard), the four raw
 per-attempt JSONL ledgers, the twenty per-launch result files carrying
 per-repetition boards and agent modes, the analyzer, and the compiled
 report (\texttt{econ\_report\_2026-08-10.json}) from which every number
-in this paper is drawn. The instrumented client and the accompanying
+in this paper is drawn. The provenance chain for every figure is
+short and mechanical: raw JSONL ledgers $\rightarrow$ per-launch
+result JSONs $\rightarrow$ analyzer $\rightarrow$ compiled report
+$\rightarrow$ manuscript tables and figure, with the figure script
+reading the report programmatically rather than transcribing values.
+The run-of-record script is provenance, not a portable reproducer: it
+encodes the machine-local repository path and environment of the
+original run so that the artifact records exactly what executed;
+re-running the study elsewhere requires the project repository and
+provider credentials. The instrumented client and the accompanying
 ledger document are in the same history (instrumentation commit and a
 correction commit fixing two aggregate-dollar errors caught in review
 --- an accounting discrepancy found while writing a paper about
