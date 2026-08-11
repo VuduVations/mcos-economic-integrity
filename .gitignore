@@ -5,3 +5,4 @@
 *.synctex.gz
 .DS_Store
 __pycache__/
+mcos_economic_integrity_paper_*.zip
