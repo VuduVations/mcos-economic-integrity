@@ -18,7 +18,7 @@ Measuring Attempt Amplification, Discarded Reasoning,\\
 and Retry Cost}
 
 \author{Sean Halverson\\VuduVations \textperiodcentered{} \texttt{vuduvations.io}\\\texttt{hello@vuduvations.io}}
-\date{August 2026 \quad (preprint v0.2)}
+\date{August 2026 \quad (preprint v0.2.1)}
 
 \begin{document}
 \maketitle
@@ -358,7 +358,9 @@ carries its own denominators and no figure is offered as a rate.
 
 Table~\ref{tab:main} is the study's central result. All four cells were
 scoreboard-equivalent, in the two senses Table~\ref{tab:tiers} makes
-precise. On capability, answer-key totals ran 468--474 of 480 checks
+precise (we use the term descriptively, not as a formal equivalence
+test: exact answer-key totals differ by cell and $n{=}10$ supports no
+stronger claim than that neither measurement orders the cells). On capability, answer-key totals ran 468--474 of 480 checks
 (cell means 46.8--47.4 of 48), and the differences do not order the
 cells --- the only cell with 10 of 10 execution-clean-or-recovered
 repetitions has the \emph{lowest} answer-key mean. On execution, every
@@ -599,19 +601,25 @@ splits are recorded but not yet analyzed --- remains open and is now
 better instrumented than before.
 
 Economically, non-stationarity prices the difference between
-prevention and recovery as forecasting risk. A prevention-based
-configuration's cost model is one attempt per job at a known budget:
-its forecast error is the starvation residual (measured tonight at 1
-in 127). A recovery-based configuration's cost model contains the
-rescue rate as a load-bearing variable --- and that variable just
+prevention and recovery as forecasting risk. What prevention
+stabilizes is the \emph{attempt count at a configured budget}: one
+attempt per job, with the starvation residual (measured tonight at 1
+in 127) as the forecast error on that count. Realized dollars still
+move with output length, cache participation, and provider list
+prices --- prevention removes the attempt-count term from the bill's
+variance, not the whole bill. A recovery-based configuration's cost
+model additionally contains the rescue rate as a load-bearing
+variable --- and that variable just
 moved by a factor of three between two nights. Worse, its failure
 mode compounds: when rescue rates drop, inner retries fail, outer
 rings engage, and both attempt counts and job counts inflate
 (Section~\ref{sec:amplifier}). An architecture that meets its
-scoreboard through retries has a bill that is a function of provider
-weather. An architecture that meets it through headroom has a bill
-that is a function of its own configuration. At month scale, the
-first is a forecasting problem; the second is a line item.
+scoreboard through retries has an attempt count that is a function of
+provider weather; one that meets it through headroom has an attempt
+count that is a function of its own configuration. At month scale,
+the first adds a random variable to the bill; the second leaves the
+bill's variance where every pipeline already carries it --- in output
+length and prices.
 
 \section{Implications for AI Cost Accounting}\label{sec:accounting}
 

@@ -1,7 +1,7 @@
 ---
 title: Economic Integrity Ledger — first measured IAF/ECI (#390)
 description: Per-attempt economic instrumentation of the four-cell DeepSeek ablation, making the reliability paper's un-instrumented attempt denominators measurable.
-version: 1.0.0
+version: 1.1.0
 status: Published
 created: 2026-08-11
 updated: 2026-08-11
@@ -32,12 +32,18 @@ full input rate, so costs are upper bounds (hit/miss splits are in the rows).
 
 ## 1. Measured results (n=10 per cell)
 
-| cell | agent IAF | agent starved / recovered / unrecovered | debate IAF | debate ECI | debate starved | cell cost | boards |
-|---|---|---|---|---|---|---|---|
-| reactive (+2000 retry) | 1.087 | 12 / 11 / 1 | 1.698 | 1.576 | 83 (82 rec / 1 unrec) | $0.93 | 9/10 recovered-clean |
-| proactive (headroom) | **1.000** | 1 / 0 / 1 | **1.000** | 1.003 | 1 | $0.87 | 9/10 first-attempt-clean |
-| pure retry (same budget) | 1.109 | 16 / **5** / **11** | 1.456 | **1.957** | 88 (19 rec / 69 unrec) | $1.03 | 9/10 recovered-clean |
-| bundle (headroom+retry) | 1.016 | 2 / 2 / 0 | 1.000 | 1.000 | 0 | $0.86 | **10/10 clean** (8 first-attempt) |
+| cell | agent IAF | agent starved / recovered / unrecovered | debate IAF | debate ECI | debate starved | cell cost | execution tiers (n=10) | answer key (/480) |
+|---|---|---|---|---|---|---|---|---|
+| reactive (+2000 retry) | 1.087 | 12 / 11 / 1 | 1.698 | 1.576 | 83 (82 rec / 1 unrec) | $0.93 | 9/10 recovered-clean | 470 (47.0) |
+| proactive (headroom) | **1.000** | 1 / 0 / 1 | **1.000** | 1.003 | 1 | $0.87 | 9/10 first-attempt-clean | 474 (47.4) |
+| pure retry (same budget) | 1.109 | 16 / **5** / **11** | 1.456 | **1.957** | 88 (19 rec / 69 unrec) | $1.03 | 9/10 recovered-clean | 472 (47.2) |
+| bundle (headroom+retry) | 1.016 | 2 / 2 / 0 | 1.000 | 1.000 | 0 | $0.86 | **10/10 exec-clean** (8 first-attempt) | 468 (46.8) |
+
+Execution tiers and answer-key scores are DISTINCT measurements and neither
+orders the cells (the only zero-degraded cell, bundle, has the lowest
+answer-key mean). "9–10/10" always means execution-clean or recovered-clean
+repetitions, never 48/48 board perfection — per cell only 2–5 of 10 boards
+were exact 48s.
 
 Cell costs above are LEDGER-COMPUTED (sum of both layers at undiscounted
 list rates; cache-hit input priced at the full input rate) and sum to $3.69.
@@ -45,8 +51,9 @@ The ACCOUNT-BILLED total was $3.07 (balance $4.74 → $1.67); the $0.62 gap is
 the provider's prompt-cache discount, which the ledger does not apply — the
 gap is itself a measured artifact of cache participation. The two aggregates
 have different bases and must never be mixed in one figure. Every cell
-reported a 9–10/10 scoreboard; the attempt machinery underneath differed by
-up to a factor of two in the debate layer.
+produced 9–10/10 execution-clean-or-recovered repetitions and answer-key
+means within 0.6 checks of one another; the attempt machinery underneath
+differed by up to a factor of two in the debate layer.
 
 ## 2. What the measurements say
 
