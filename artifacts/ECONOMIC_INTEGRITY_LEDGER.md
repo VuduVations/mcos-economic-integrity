@@ -1,7 +1,7 @@
 ---
 title: Economic Integrity Ledger — first measured IAF/ECI (#390)
 description: Per-attempt economic instrumentation of the four-cell DeepSeek ablation, making the reliability paper's un-instrumented attempt denominators measurable.
-version: 1.1.0
+version: 1.1.1
 status: Published
 created: 2026-08-11
 updated: 2026-08-11
@@ -57,11 +57,15 @@ differed by up to a factor of two in the debate layer.
 
 ## 2. What the measurements say
 
-1. **Prevention measures as IAF = 1.000.** The proactive cell — where the
-   paper's "0 events" claim previously rested on a retry log line that
-   cannot fire with the retry ablated — now shows 127 agent jobs, 127
-   attempts, one empty first reply, directly observed. The blind spot is
-   closed and the claim survives (as 1-in-127, not 0).
+1. **Prevention measures as a counted residual with no hidden
+   amplification.** Caveat first: with the retry ablated, inner-ring
+   IAF = 1.000 is structural, not evidence by itself. The evidence: the
+   proactive cell — where the paper's "0 events" claim previously rested
+   on a retry log line that cannot fire with the retry ablated — now
+   shows 127 agent jobs, 127 attempts, one empty first reply, directly
+   observed, AND no outer-ring re-asks (debate jobs at the baseline 119,
+   not pure_retry's 193). The blind spot is closed and the claim
+   survives (as 1-in-127, not 0).
 2. **The retry mechanism ranking is measured, and it reverses the 08-09
    anomaly.** Same-budget re-asks rescued 5 of 16 starved jobs tonight;
    +2000-headroom retries rescued 11 of 12; the bundle rescued 2 of 2. On

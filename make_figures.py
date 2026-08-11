@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate fig_econ.pdf for the economic integrity paper (v0.2).
+"""Generate fig_econ.pdf for the economic integrity paper (v0.2.1).
 
 Three panels over the four ablation cells, per layer (agent vs debate,
 never pooled):

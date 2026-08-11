@@ -1,7 +1,7 @@
 # Paper 2 — Economic Integrity in Production LLM Pipelines
 
 Measuring Attempt Amplification, Discarded Reasoning, and Retry Cost.
-Preprint v0.2 (revised 2026-08-11). Companion to Paper 1
+Preprint v0.2.1 (revised 2026-08-11). Companion to Paper 1
 (`../mcos-reliability-paper/`).
 
 ## Layout
