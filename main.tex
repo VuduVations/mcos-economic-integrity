@@ -18,7 +18,7 @@ Measuring Attempt Amplification, Discarded Reasoning,\\
 and Retry Cost}
 
 \author{Sean Halverson\\VuduVations \textperiodcentered{} \texttt{vuduvations.io}\\\texttt{hello@vuduvations.io}}
-\date{August 2026 \quad (preprint v0.2.1)}
+\date{August 2026 \quad (preprint v0.2.2)}
 
 \begin{document}
 \maketitle
@@ -55,9 +55,9 @@ ring (\iaf{} $=1.000$ by direct enumeration). Retry-based recovery
 reaches an equivalent scoreboard with \iaf{} up to $1.70$ and \eci{} up
 to $1.96$ in the
 adversarial validation layer: in the worst cell, 48.9\% of that layer's
-spend bought attempts whose output was discarded --- and every discarded
-output token in the study was a reasoning token, the spend category no
-scoreboard sees. Rescue effectiveness was also non-stationary: a
+spend bought attempts whose output was discarded --- and 228,889 of
+228,890 discarded output tokens in the study were reasoning tokens, the
+spend category no scoreboard sees. Rescue effectiveness was also non-stationary: a
 same-budget re-ask recovered roughly 19 of 20 starved jobs one night and
 5 of 16 two nights later under an identical configuration, so retry-based
 cost forecasts inherit a volatility that prevention-based forecasts do
@@ -158,10 +158,10 @@ of the visible completion~\cite{openaireasoning,deepseekdocs}. A
 starved attempt --- one that spends its whole completion budget
 thinking and emits nothing --- therefore produces a bill with no
 corresponding artifact anywhere in the application. In this study,
-65.1\% of all billed output tokens were reasoning tokens, and, within
-one token of exactly, \emph{100\% of discarded output tokens were
-reasoning tokens}: the attempts the pipeline threw away consisted
-entirely of thinking no one ever saw.
+65.1\% of all billed output tokens were reasoning tokens, and 228{,}889
+of 228{,}890 discarded output tokens were reasoning tokens: the attempts
+the pipeline threw away consisted almost entirely of thinking no one
+ever saw.
 
 \textbf{Layered recovery multiplies callers.} Production pipelines
 recover at more than one level. In ours, the portable client retries an
@@ -441,7 +441,7 @@ pooled; the dotted line at $1.0$ is the no-amplification floor that
 both proactive rows sit on. Panel 3 splits the adversarial validation
 layer's ledger-computed spend into used and discarded dollars: the two
 no-headroom cells discarded 37\% and 49\% of the layer's bill to reach
-a scoreboard equivalent to the cells that discarded none.}
+a scoreboard equivalent to the cells that discarded effectively none.}
 \label{fig:econ}
 \end{figure}
 
@@ -463,12 +463,11 @@ tonight, held \eci{} at 1.02--1.05 everywhere. Across the whole study,
 whose output was discarded, and 82\% of that discarded spend was in the
 debate layer.
 
-\textbf{(3) Every discarded output token was a reasoning token.} Summed
-over all cells and layers, discarded attempts billed 228{,}890 output
-tokens, of which 228{,}889 were reasoning tokens (the one-token gap is
-a provider rounding artifact). A starved attempt spends its entire
-completion budget thinking and emits nothing; the entire discarded
-bill was invisible thinking. Overall, 65.1\% of the study's billed
+\textbf{(3) Nearly every discarded output token was a reasoning token.}
+Summed over all cells and layers, discarded attempts billed 228{,}890
+output tokens, of which 228{,}889 were reasoning tokens. A starved
+attempt spends its entire completion budget thinking and emits nothing;
+nearly all discarded output tokens were invisible reasoning tokens. Overall, 65.1\% of the study's billed
 output tokens were reasoning tokens, so the spend category most
 exposed to discard is also the largest one.
 
@@ -628,11 +627,13 @@ totals. The ledger-computed total is \$3.694: every attempt priced at
 undiscounted direct list rates, cache-hit input priced at the full
 input rate --- an upper bound with per-attempt attribution. The
 account-billed total is \$3.07: the provider balance moved \$4.74 to
-\$1.67 across the run, with the provider's prompt-cache discount
-applied --- exact in aggregate, attributable to nothing smaller than
-the run. The \$0.62 gap between the bases is the measured value of the
-provider's cache discount across the study, itself an artifact of
-cache participation that the per-attempt hit/miss splits will support
+\$1.67 across the run --- the observed aggregate account-billed amount
+under the controlled run conditions, attributable to nothing smaller
+than the run. The \$0.62 residual between the bases is a measured
+pricing residual, consistent with the provider's prompt-cache discount
+structure; where provider pricing terms are independently known it may
+be decomposed among realized cache discounts and other provider-side
+pricing adjustments, which the per-attempt hit/miss splits support
 analyzing. Both totals are correct on their own basis; mixing them in
 one figure would be an accounting error, and we nearly committed it
 in an early draft of our own ledger document. Cost reporting for LLM
@@ -649,8 +650,8 @@ HTTP attempt at the client boundary, below every wrapper that can
 rebind a response.
 
 \textbf{Account for reasoning tokens as a first-class category.}
-Reasoning tokens were 65.1\% of this study's billed output and 100\%
-of its discarded output. A cost dashboard that reports visible
+Reasoning tokens were 65.1\% of this study's billed output and
+228{,}889 of its 228{,}890 discarded output tokens. A cost dashboard that reports visible
 completion tokens misses the majority of the bill; a scoreboard
 misses it by construction. The starved attempt is the extreme case: a
 bill consisting entirely of tokens no human or program will ever see.
