@@ -1,0 +1,126 @@
+[
+  {
+    "mode": "deepseek",
+    "model": "deepseek-v4-pro",
+    "rep": 1,
+    "l3_cached": false,
+    "l3_seconds": 527.9,
+    "agent_llm": 10,
+    "agent_total": 10,
+    "routing_quants": [],
+    "chamber_ran": true,
+    "chamber_resolved": 3,
+    "chamber_failed": 0,
+    "agent_modes": {
+      "pattern_detector": "llm",
+      "quantifier": "llm",
+      "risk_assessor": "llm",
+      "opportunity_finder": "llm",
+      "stakeholder_analyzer": "llm",
+      "timeline_builder": "llm",
+      "dependency_mapper": "llm",
+      "priority_ranker": "llm",
+      "gap_analyzer": "llm",
+      "recommendation_generator": "llm"
+    },
+    "json_failures": 0,
+    "cost_usd": 0.09712941,
+    "batch": null,
+    "protocols": {
+      "AID": {
+        "score": "8/8",
+        "fails": 0,
+        "failed_ids": [],
+        "grounded": 800000,
+        "roi": 126.2,
+        "spine": "verified",
+        "spine_under": [],
+        "spine_over": [],
+        "adjudication": null
+      },
+      "SCI": {
+        "score": "11/11",
+        "fails": 0,
+        "failed_ids": [],
+        "budget": "$450,000",
+        "cost_base": 210000.0
+      },
+      "KPA": {
+        "score": "13/14",
+        "fails": 1,
+        "failed_ids": [
+          "O2.2 no invented external company names"
+        ],
+        "key_persons": 3
+      },
+      "M&A": {
+        "score": "15/15",
+        "fails": 0,
+        "failed_ids": [],
+        "verdict": null
+      }
+    }
+  },
+  {
+    "mode": "deepseek",
+    "model": "deepseek-v4-pro",
+    "rep": 2,
+    "l3_cached": false,
+    "l3_seconds": 497.6,
+    "agent_llm": 10,
+    "agent_total": 10,
+    "routing_quants": [],
+    "chamber_ran": true,
+    "chamber_resolved": 3,
+    "chamber_failed": 0,
+    "agent_modes": {
+      "pattern_detector": "llm",
+      "quantifier": "llm",
+      "risk_assessor": "llm",
+      "opportunity_finder": "llm",
+      "stakeholder_analyzer": "llm",
+      "timeline_builder": "llm",
+      "dependency_mapper": "llm",
+      "priority_ranker": "llm",
+      "gap_analyzer": "llm",
+      "recommendation_generator": "llm"
+    },
+    "json_failures": 0,
+    "cost_usd": 0.07527413999999999,
+    "batch": null,
+    "protocols": {
+      "AID": {
+        "score": "7/8",
+        "fails": 1,
+        "failed_ids": [
+          "C3-4-threshold"
+        ],
+        "grounded": 800000,
+        "roi": 140.2,
+        "spine": "verified",
+        "spine_under": [],
+        "spine_over": [],
+        "adjudication": null
+      },
+      "SCI": {
+        "score": "11/11",
+        "fails": 0,
+        "failed_ids": [],
+        "budget": "$450,000",
+        "cost_base": 854000.0
+      },
+      "KPA": {
+        "score": "14/14",
+        "fails": 0,
+        "failed_ids": [],
+        "key_persons": 3
+      },
+      "M&A": {
+        "score": "15/15",
+        "fails": 0,
+        "failed_ids": [],
+        "verdict": null
+      }
+    }
+  }
+]
