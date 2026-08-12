@@ -19,7 +19,7 @@ instrumented"). This run instruments the attempt itself:
 tag, outcome, latency), gated on `MCOS_ECON_LEDGER` — zero behavior change
 when unset. The four ablation cells were re-run with the ledger armed
 (`run_econ_ablation.sh`, n=10 per cell, DeepSeek direct, MAD_* unset,
-2026-08-10/11). Analyzer: `econ_analyze.py` → `econ_report_2026-08-10.json`;
+2026-08-10/11). Analyzer: `econ_analyze.py` (retained privately; digest in `SHA256SUMS`) → `econ_report_2026-08-10.json`;
 raw ledgers in `econ_ledgers/`; result JSONs `results_econ_*`.
 
 **Definitions.** IAF = physical attempts / logical jobs (per layer, never

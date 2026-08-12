@@ -285,7 +285,7 @@ The source-of-truth artifact chain is:
 ```text
 raw JSONL ledgers
 -> per-launch result JSONs
--> econ_analyze.py
+-> analyzer (retained privately; implements the definitions in this paper)
 -> econ_report_2026-08-10.json
 -> manuscript tables and figure
 ```
@@ -571,7 +571,7 @@ Its core source-of-truth files are:
 - `artifacts/econ_report_2026-08-10.json`
 - `artifacts/econ_ledgers/*.jsonl`
 - `artifacts/results/*.json`
-- `artifacts/econ_analyze.py`
+- the ledger analyzer (retained privately; its SHA-256 digest is committed in `artifacts/SHA256SUMS`)
 - `artifacts/SHA256SUMS`
 - `main.tex`
 

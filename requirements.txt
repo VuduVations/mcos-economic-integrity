@@ -1,4 +1,3 @@
 # make_figures.py (Python 3.10+)
 matplotlib>=3.7
-# econ_analyze.py uses only the standard library.
 # The manuscript builds with tectonic (https://tectonic-typesetting.github.io).
