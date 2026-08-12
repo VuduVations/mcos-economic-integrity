@@ -8,6 +8,7 @@ authors:
   - family-names: Halverson
     given-names: Sean
     affiliation: VuduVations
+    orcid: "https://orcid.org/0009-0000-4188-5288"
 preferred-citation:
   type: article
   title: "Economic Integrity in Production LLM Pipelines: Measuring Attempt Amplification, Discarded Reasoning, and Retry Cost"
@@ -15,6 +16,7 @@ preferred-citation:
     - family-names: Halverson
       given-names: Sean
       affiliation: VuduVations
+      orcid: "https://orcid.org/0009-0000-4188-5288"
   year: 2026
   month: 8
   notes: "Preprint v0.2.3. Patent pending."
