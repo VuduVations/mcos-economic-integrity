@@ -17,14 +17,19 @@ Preprint v0.2.1 (revised 2026-08-11). Companion to Paper 1
     manuscript's numerical source of truth
   - `econ_ledgers/` — 4 raw per-attempt JSONL ledgers (one per ablation cell)
   - `results/` — 20 per-launch bench result JSONs (boards + agent_modes)
-  - `econ_analyze.py` — ledger analyzer that produced the report; running it
-    inside `artifacts/` regenerates the report from the ledgers and
-    `results/` (stdlib only)
+  - the ledger analyzer that produced the report is **retained privately** as
+    part of the measurement implementation (see `PATENTS.md`). Its SHA-256
+    digest remains in `SHA256SUMS` as a commitment. Every value in
+    `econ_report_2026-08-10.json` is independently recomputable from
+    `econ_ledgers/` + `results/` using the definitions stated in the paper
+    (IAF, ECI, used-attempt classification, per-layer separation, dual cost
+    bases)
   - `run_econ_ablation.sh` — run-of-record PROVENANCE, not a portable
     reproducer: it hardcodes the original machine's repo path and sources its
     `.env`; it documents exactly what executed
   - `ECONOMIC_INTEGRITY_LEDGER.md` — the engineering ledger write-up
-  - `SHA256SUMS` — manifest over all of the above
+  - `SHA256SUMS` — manifest over the run-of-record package, including the
+    digest of the privately retained analyzer
 
 ## Numbers discipline
 
@@ -45,9 +50,11 @@ data are licensed under CC BY 4.0 unless otherwise noted.
 
 See LICENSES/ and PATENTS.md for additional information.
 
-Note on the release artifact: `mcos_economic_integrity_paper_v0.2.3_2026-08-11.zip`
-(the release asset whose SHA-256 is recorded in U.S. Provisional Application
-No. 64/131,659) is a byte-frozen snapshot taken before `LICENSES/` and
-`PATENTS.md` were added, and is never rebuilt. The licensing above applies to
-the repository contents, including the corresponding files inside that
-snapshot.
+Note on the filed artifact bundle: the archive
+`mcos_economic_integrity_paper_v0.2.3_2026-08-11.zip`, whose SHA-256 digest is
+recorded in U.S. Provisional Application No. 64/131,659, is a byte-frozen
+snapshot that is never rebuilt. It is retained privately as evidence of what
+existed at filing (it predates `LICENSES/` and `PATENTS.md` and includes the
+privately retained analyzer); it is not distributed. The public repository is
+the published record: data and manifest under CC BY 4.0, software under MIT,
+as described above.

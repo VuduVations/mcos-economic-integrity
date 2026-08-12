@@ -18,7 +18,7 @@ Measuring Attempt Amplification, Discarded Reasoning,\\
 and Retry Cost}
 
 \author{Sean Halverson\\VuduVations \textperiodcentered{} \texttt{vuduvations.io}\\\texttt{hello@vuduvations.io}}
-\date{August 2026 \quad (preprint v0.2.3)}
+\date{August 2026 \quad (preprint v0.2.4)}
 
 \begin{document}
 \maketitle
@@ -342,8 +342,8 @@ each, matching the companion run-of-record shape) on 2026-08-10/11,
 with the ledger armed and a balance-floor guard between cells. Unlike
 the companion ablation, whose cells were launched by hand, the entire
 run is a committed script; the raw ledgers (one JSONL per cell), the
-twenty per-launch result files, the analyzer, and the compiled report
-are all committed alongside it (Section~\ref{sec:artifacts}).
+twenty per-launch result files, and the compiled report are all
+committed alongside it (Section~\ref{sec:artifacts}).
 
 One asymmetry with the companion paper must be stated up front: these
 are \emph{new} runs on a \emph{different night}, not a re-analysis of
@@ -722,13 +722,19 @@ the first invoice.
 The run is fully committed in the project repository: the run-of-record
 script (four cells, lever hygiene, balance-floor guard), the four raw
 per-attempt JSONL ledgers, the twenty per-launch result files carrying
-per-repetition boards and agent modes, the analyzer, and the compiled
-report (\texttt{econ\_report\_2026-08-10.json}) from which every number
+per-repetition boards and agent modes, and the compiled report
+(\texttt{econ\_report\_2026-08-10.json}) from which every number
 in this paper is drawn. The provenance chain for every figure is
 short and mechanical: raw JSONL ledgers $\rightarrow$ per-launch
 result JSONs $\rightarrow$ analyzer $\rightarrow$ compiled report
 $\rightarrow$ manuscript tables and figure, with the figure script
 reading the report programmatically rather than transcribing values.
+The analyzer itself is a direct implementation of the definitions
+given in this paper and is retained privately as part of the
+measurement implementation (see the patent notice in the repository);
+its SHA-256 digest is recorded in the repository's published manifest,
+and every reported quantity is independently recomputable from the
+published ledgers and result files using those definitions.
 The run-of-record script is provenance, not a portable reproducer: it
 encodes the machine-local repository path and environment of the
 original run so that the artifact records exactly what executed;
@@ -737,9 +743,10 @@ provider credentials. The instrumented client and the accompanying
 ledger document are in the same history (instrumentation commit and a
 correction commit fixing two aggregate-dollar errors caught in review
 --- an accounting discrepancy found while writing a paper about
-accounting, which we record in the spirit of the method). A redacted
-artifact bundle with a SHA-256 manifest will accompany the submitted
-version, following the companion paper's bundle format.
+accounting, which we record in the spirit of the method). The frozen
+artifact bundle whose SHA-256 digest is recorded in the related
+provisional patent application is retained privately as evidence; the
+public repository carries the data, the manifest, and this manuscript.
 
 \bibliographystyle{plain}
 \begin{thebibliography}{12}
