@@ -34,3 +34,20 @@ rescue rates are never generalized. Ledger-computed dollars (undiscounted
 list, cache-hit input at full rate; upper bound) and account-billed dollars
 (balance delta, provider cache discount applied) are two bases that are
 never mixed in one figure.
+
+## Licensing
+
+Software source files in this repository are licensed under the MIT License
+unless otherwise noted.
+
+The research manuscript, whitepaper, documentation, and published research
+data are licensed under CC BY 4.0 unless otherwise noted.
+
+See LICENSES/ and PATENTS.md for additional information.
+
+Note on the release artifact: `mcos_economic_integrity_paper_v0.2.3_2026-08-11.zip`
+(the release asset whose SHA-256 is recorded in U.S. Provisional Application
+No. 64/131,659) is a byte-frozen snapshot taken before `LICENSES/` and
+`PATENTS.md` were added, and is never rebuilt. The licensing above applies to
+the repository contents, including the corresponding files inside that
+snapshot.
