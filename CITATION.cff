@@ -4,6 +4,14 @@ title: "MCOS Economic Integrity: attempt-level economic accounting for productio
 type: software
 version: 0.2.4
 date-released: "2026-08-12"
+doi: 10.5281/zenodo.21903218
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.21903218
+    description: "Version DOI (v0.2.4)"
+  - type: doi
+    value: 10.5281/zenodo.21903217
+    description: "Concept DOI (all versions)"
 authors:
   - family-names: Halverson
     given-names: Sean

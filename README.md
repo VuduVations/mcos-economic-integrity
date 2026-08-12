@@ -1,5 +1,7 @@
 # Paper 2 — Economic Integrity in Production LLM Pipelines
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21903218.svg)](https://doi.org/10.5281/zenodo.21903218)
+
 Measuring Attempt Amplification, Discarded Reasoning, and Retry Cost.
 Preprint v0.2.1 (revised 2026-08-11). Companion to Paper 1
 (`../mcos-reliability-paper/`).
