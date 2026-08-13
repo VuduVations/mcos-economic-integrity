@@ -2,48 +2,48 @@
  "kimi_reactive": {
   "cell": "kimi_reactive",
   "date": "2026-08-13",
-  "reps_graded": 8,
+  "reps_graded": 10,
   "agent": {
-   "logical_jobs": 99,
-   "attempts": 112,
-   "IAF": 1.1313,
-   "starvation_events_attempt1": 13,
-   "retries_issued": 13,
-   "recovered_by_retry": 12,
+   "logical_jobs": 125,
+   "attempts": 141,
+   "IAF": 1.128,
+   "starvation_events_attempt1": 16,
+   "retries_issued": 16,
+   "recovered_by_retry": 15,
    "unrecovered_final_empty": 1,
    "transport_errors": 1,
-   "tokens_in": 217744,
-   "tokens_out": 667606,
-   "tokens_reasoning": 405264,
+   "tokens_in": 273308,
+   "tokens_out": 836352,
+   "tokens_reasoning": 505792,
    "cache_hit_tokens": 0,
    "cache_miss_tokens": 0,
-   "cost_total_usd": 10.6673,
-   "cost_used_usd": 10.171,
-   "cost_discarded_usd": 0.4963,
-   "discarded_reasoning_tokens": 30337,
-   "discarded_output_tokens": 30376,
-   "ECI": 1.0488
+   "cost_total_usd": 13.3652,
+   "cost_used_usd": 12.7208,
+   "cost_discarded_usd": 0.6444,
+   "discarded_reasoning_tokens": 39520,
+   "discarded_output_tokens": 39568,
+   "ECI": 1.0507
   },
   "debate": {
-   "logical_jobs": 86,
-   "attempts": 161,
-   "IAF": 1.8721,
-   "starvation_events_attempt1": 76,
-   "retries_issued": 75,
-   "recovered_by_retry": 72,
+   "logical_jobs": 106,
+   "attempts": 195,
+   "IAF": 1.8396,
+   "starvation_events_attempt1": 90,
+   "retries_issued": 89,
+   "recovered_by_retry": 86,
    "unrecovered_final_empty": 4,
    "transport_errors": 3,
-   "tokens_in": 245959,
-   "tokens_out": 180143,
-   "tokens_reasoning": 152265,
+   "tokens_in": 295839,
+   "tokens_out": 215323,
+   "tokens_reasoning": 181546,
    "cache_hit_tokens": 0,
    "cache_miss_tokens": 0,
-   "cost_total_usd": 3.44,
-   "cost_used_usd": 2.2158,
-   "cost_discarded_usd": 1.2242,
-   "discarded_reasoning_tokens": 57772,
-   "discarded_output_tokens": 58000,
-   "ECI": 1.5525
+   "cost_total_usd": 4.1174,
+   "cost_used_usd": 2.6863,
+   "cost_discarded_usd": 1.4311,
+   "discarded_reasoning_tokens": 67330,
+   "discarded_output_tokens": 67600,
+   "ECI": 1.5327
   },
   "rep_tiers": [
    {
@@ -111,12 +111,28 @@
     "agent_retries": 2,
     "agent_cost_usd": 1.2571,
     "fallback_agents": []
+   },
+   {
+    "part": "5",
+    "rep": "1",
+    "tier": "recovered_clean",
+    "agent_retries": 2,
+    "agent_cost_usd": 1.4039,
+    "fallback_agents": []
+   },
+   {
+    "part": "5",
+    "rep": "2",
+    "tier": "recovered_clean",
+    "agent_retries": 1,
+    "agent_cost_usd": 1.294,
+    "fallback_agents": []
    }
   ],
   "cost_by_tier": {
    "recovered_clean": {
-    "n": 7,
-    "mean_usd": 1.342
+    "n": 9,
+    "mean_usd": 1.3436
    },
    "degraded": {
     "n": 1,
