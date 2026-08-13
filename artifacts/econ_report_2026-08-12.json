@@ -1,0 +1,658 @@
+{
+ "reactive": {
+  "cell": "reactive",
+  "date": "2026-08-12",
+  "reps_graded": 10,
+  "agent": {
+   "logical_jobs": 119,
+   "attempts": 162,
+   "IAF": 1.3613,
+   "starvation_events_attempt1": 43,
+   "retries_issued": 43,
+   "recovered_by_retry": 30,
+   "unrecovered_final_empty": 13,
+   "transport_errors": 0,
+   "tokens_in": 336103,
+   "tokens_out": 1228819,
+   "tokens_reasoning": 1047441,
+   "cache_hit_tokens": 316160,
+   "cache_miss_tokens": 19943,
+   "cost_total_usd": 1.2153,
+   "cost_used_usd": 0.8128,
+   "cost_discarded_usd": 0.4025,
+   "discarded_reasoning_tokens": 407830,
+   "discarded_output_tokens": 407830,
+   "ECI": 1.4952
+  },
+  "debate": {
+   "logical_jobs": 114,
+   "attempts": 216,
+   "IAF": 1.8947,
+   "starvation_events_attempt1": 103,
+   "retries_issued": 102,
+   "recovered_by_retry": 94,
+   "unrecovered_final_empty": 9,
+   "transport_errors": 1,
+   "tokens_in": 323692,
+   "tokens_out": 277599,
+   "tokens_reasoning": 254540,
+   "cache_hit_tokens": 200320,
+   "cache_miss_tokens": 123372,
+   "cost_total_usd": 0.3823,
+   "cost_used_usd": 0.2177,
+   "cost_discarded_usd": 0.1646,
+   "discarded_reasoning_tokens": 106000,
+   "discarded_output_tokens": 106000,
+   "ECI": 1.7558
+  },
+  "rep_tiers": [
+   {
+    "part": "1",
+    "rep": "1",
+    "tier": "degraded",
+    "agent_retries": 4,
+    "agent_cost_usd": 0.1196,
+    "fallback_agents": [
+     "dependency_mapper"
+    ]
+   },
+   {
+    "part": "1",
+    "rep": "2",
+    "tier": "degraded",
+    "agent_retries": 4,
+    "agent_cost_usd": 0.1185,
+    "fallback_agents": [
+     "dependency_mapper",
+     "priority_ranker"
+    ]
+   },
+   {
+    "part": "2",
+    "rep": "1",
+    "tier": "recovered_clean",
+    "agent_retries": 3,
+    "agent_cost_usd": 0.1073,
+    "fallback_agents": []
+   },
+   {
+    "part": "2",
+    "rep": "2",
+    "tier": "degraded",
+    "agent_retries": 5,
+    "agent_cost_usd": 0.13,
+    "fallback_agents": [
+     "dependency_mapper",
+     "recommendation_generator"
+    ]
+   },
+   {
+    "part": "3",
+    "rep": "1",
+    "tier": "degraded",
+    "agent_retries": 4,
+    "agent_cost_usd": 0.1232,
+    "fallback_agents": [
+     "dependency_mapper",
+     "recommendation_generator"
+    ]
+   },
+   {
+    "part": "3",
+    "rep": "2",
+    "tier": "degraded",
+    "agent_retries": 4,
+    "agent_cost_usd": 0.1203,
+    "fallback_agents": [
+     "dependency_mapper",
+     "priority_ranker"
+    ]
+   },
+   {
+    "part": "4",
+    "rep": "1",
+    "tier": "degraded",
+    "agent_retries": 4,
+    "agent_cost_usd": 0.1141,
+    "fallback_agents": [
+     "dependency_mapper",
+     "priority_ranker"
+    ]
+   },
+   {
+    "part": "4",
+    "rep": "2",
+    "tier": "degraded",
+    "agent_retries": 5,
+    "agent_cost_usd": 0.1259,
+    "fallback_agents": [
+     "dependency_mapper",
+     "recommendation_generator"
+    ]
+   },
+   {
+    "part": "5",
+    "rep": "1",
+    "tier": "degraded",
+    "agent_retries": 5,
+    "agent_cost_usd": 0.1233,
+    "fallback_agents": [
+     "dependency_mapper",
+     "priority_ranker"
+    ]
+   },
+   {
+    "part": "5",
+    "rep": "2",
+    "tier": "degraded",
+    "agent_retries": 5,
+    "agent_cost_usd": 0.1329,
+    "fallback_agents": [
+     "dependency_mapper"
+    ]
+   }
+  ],
+  "cost_by_tier": {
+   "degraded": {
+    "n": 9,
+    "mean_usd": 0.1231
+   },
+   "recovered_clean": {
+    "n": 1,
+    "mean_usd": 0.1073
+   }
+  }
+ },
+ "proactive": {
+  "cell": "proactive",
+  "date": "2026-08-12",
+  "reps_graded": 10,
+  "agent": {
+   "logical_jobs": 126,
+   "attempts": 126,
+   "IAF": 1.0,
+   "starvation_events_attempt1": 22,
+   "retries_issued": 0,
+   "recovered_by_retry": 0,
+   "unrecovered_final_empty": 22,
+   "transport_errors": 0,
+   "tokens_in": 261241,
+   "tokens_out": 1017045,
+   "tokens_reasoning": 819776,
+   "cache_hit_tokens": 239488,
+   "cache_miss_tokens": 21753,
+   "cost_total_usd": 0.9985,
+   "cost_used_usd": 0.7892,
+   "cost_discarded_usd": 0.2093,
+   "discarded_reasoning_tokens": 216532,
+   "discarded_output_tokens": 216532,
+   "ECI": 1.2652
+  },
+  "debate": {
+   "logical_jobs": 101,
+   "attempts": 101,
+   "IAF": 1.0,
+   "starvation_events_attempt1": 10,
+   "retries_issued": 0,
+   "recovered_by_retry": 0,
+   "unrecovered_final_empty": 10,
+   "transport_errors": 0,
+   "tokens_in": 150860,
+   "tokens_out": 180704,
+   "tokens_reasoning": 159459,
+   "cache_hit_tokens": 39424,
+   "cache_miss_tokens": 111436,
+   "cost_total_usd": 0.2228,
+   "cost_used_usd": 0.189,
+   "cost_discarded_usd": 0.0338,
+   "discarded_reasoning_tokens": 30400,
+   "discarded_output_tokens": 30400,
+   "ECI": 1.1789
+  },
+  "rep_tiers": [
+   {
+    "part": "1",
+    "rep": "1",
+    "tier": "degraded",
+    "agent_retries": 0,
+    "agent_cost_usd": 0.0993,
+    "fallback_agents": [
+     "dependency_mapper",
+     "priority_ranker"
+    ]
+   },
+   {
+    "part": "1",
+    "rep": "2",
+    "tier": "degraded",
+    "agent_retries": 0,
+    "agent_cost_usd": 0.1041,
+    "fallback_agents": [
+     "dependency_mapper"
+    ]
+   },
+   {
+    "part": "2",
+    "rep": "1",
+    "tier": "degraded",
+    "agent_retries": 0,
+    "agent_cost_usd": 0.1037,
+    "fallback_agents": [
+     "priority_ranker"
+    ]
+   },
+   {
+    "part": "2",
+    "rep": "2",
+    "tier": "degraded",
+    "agent_retries": 0,
+    "agent_cost_usd": 0.0981,
+    "fallback_agents": [
+     "opportunity_finder",
+     "timeline_builder",
+     "dependency_mapper",
+     "priority_ranker",
+     "recommendation_generator"
+    ]
+   },
+   {
+    "part": "3",
+    "rep": "1",
+    "tier": "degraded",
+    "agent_retries": 0,
+    "agent_cost_usd": 0.1018,
+    "fallback_agents": [
+     "dependency_mapper",
+     "priority_ranker"
+    ]
+   },
+   {
+    "part": "3",
+    "rep": "2",
+    "tier": "degraded",
+    "agent_retries": 0,
+    "agent_cost_usd": 0.106,
+    "fallback_agents": [
+     "risk_assessor",
+     "dependency_mapper",
+     "priority_ranker"
+    ]
+   },
+   {
+    "part": "4",
+    "rep": "1",
+    "tier": "degraded",
+    "agent_retries": 0,
+    "agent_cost_usd": 0.0943,
+    "fallback_agents": [
+     "dependency_mapper"
+    ]
+   },
+   {
+    "part": "4",
+    "rep": "2",
+    "tier": "degraded",
+    "agent_retries": 0,
+    "agent_cost_usd": 0.0925,
+    "fallback_agents": [
+     "timeline_builder",
+     "dependency_mapper",
+     "priority_ranker"
+    ]
+   },
+   {
+    "part": "5",
+    "rep": "1",
+    "tier": "degraded",
+    "agent_retries": 0,
+    "agent_cost_usd": 0.0936,
+    "fallback_agents": [
+     "dependency_mapper"
+    ]
+   },
+   {
+    "part": "5",
+    "rep": "2",
+    "tier": "degraded",
+    "agent_retries": 0,
+    "agent_cost_usd": 0.1051,
+    "fallback_agents": [
+     "dependency_mapper",
+     "priority_ranker",
+     "recommendation_generator"
+    ]
+   }
+  ],
+  "cost_by_tier": {
+   "degraded": {
+    "n": 10,
+    "mean_usd": 0.0998
+   }
+  }
+ },
+ "pure_retry": {
+  "cell": "pure_retry",
+  "date": "2026-08-12",
+  "reps_graded": 10,
+  "agent": {
+   "logical_jobs": 122,
+   "attempts": 169,
+   "IAF": 1.3852,
+   "starvation_events_attempt1": 51,
+   "retries_issued": 47,
+   "recovered_by_retry": 11,
+   "unrecovered_final_empty": 40,
+   "transport_errors": 4,
+   "tokens_in": 336804,
+   "tokens_out": 1151301,
+   "tokens_reasoning": 994946,
+   "cache_hit_tokens": 317696,
+   "cache_miss_tokens": 19108,
+   "cost_total_usd": 1.1481,
+   "cost_used_usd": 0.6444,
+   "cost_discarded_usd": 0.5037,
+   "discarded_reasoning_tokens": 503617,
+   "discarded_output_tokens": 503617,
+   "ECI": 1.7816
+  },
+  "debate": {
+   "logical_jobs": 203,
+   "attempts": 312,
+   "IAF": 1.5369,
+   "starvation_events_attempt1": 110,
+   "retries_issued": 109,
+   "recovered_by_retry": 13,
+   "unrecovered_final_empty": 97,
+   "transport_errors": 1,
+   "tokens_in": 464214,
+   "tokens_out": 341429,
+   "tokens_reasoning": 318861,
+   "cache_hit_tokens": 343552,
+   "cache_miss_tokens": 120662,
+   "cost_total_usd": 0.499,
+   "cost_used_usd": 0.2155,
+   "cost_discarded_usd": 0.2835,
+   "discarded_reasoning_tokens": 173200,
+   "discarded_output_tokens": 173200,
+   "ECI": 2.3157
+  },
+  "rep_tiers": [
+   {
+    "part": "1",
+    "rep": "1",
+    "tier": "degraded",
+    "agent_retries": 4,
+    "agent_cost_usd": 0.1148,
+    "fallback_agents": [
+     "dependency_mapper",
+     "priority_ranker",
+     "gap_analyzer"
+    ]
+   },
+   {
+    "part": "1",
+    "rep": "2",
+    "tier": "degraded",
+    "agent_retries": 4,
+    "agent_cost_usd": 0.1156,
+    "fallback_agents": [
+     "dependency_mapper",
+     "priority_ranker"
+    ]
+   },
+   {
+    "part": "2",
+    "rep": "1",
+    "tier": "degraded",
+    "agent_retries": 4,
+    "agent_cost_usd": 0.1103,
+    "fallback_agents": [
+     "dependency_mapper"
+    ]
+   },
+   {
+    "part": "2",
+    "rep": "2",
+    "tier": "degraded",
+    "agent_retries": 6,
+    "agent_cost_usd": 0.1297,
+    "fallback_agents": [
+     "risk_assessor",
+     "dependency_mapper",
+     "priority_ranker",
+     "recommendation_generator"
+    ]
+   },
+   {
+    "part": "3",
+    "rep": "1",
+    "tier": "degraded",
+    "agent_retries": 7,
+    "agent_cost_usd": 0.1403,
+    "fallback_agents": [
+     "timeline_builder",
+     "dependency_mapper",
+     "priority_ranker",
+     "recommendation_generator"
+    ]
+   },
+   {
+    "part": "3",
+    "rep": "2",
+    "tier": "degraded",
+    "agent_retries": 3,
+    "agent_cost_usd": 0.066,
+    "fallback_agents": [
+     "stakeholder_analyzer",
+     "dependency_mapper",
+     "priority_ranker",
+     "gap_analyzer",
+     "recommendation_generator"
+    ]
+   },
+   {
+    "part": "4",
+    "rep": "1",
+    "tier": "degraded",
+    "agent_retries": 5,
+    "agent_cost_usd": 0.117,
+    "fallback_agents": [
+     "dependency_mapper",
+     "priority_ranker"
+    ]
+   },
+   {
+    "part": "4",
+    "rep": "2",
+    "tier": "degraded",
+    "agent_retries": 4,
+    "agent_cost_usd": 0.1134,
+    "fallback_agents": [
+     "risk_assessor",
+     "dependency_mapper",
+     "priority_ranker"
+    ]
+   },
+   {
+    "part": "5",
+    "rep": "1",
+    "tier": "degraded",
+    "agent_retries": 4,
+    "agent_cost_usd": 0.1101,
+    "fallback_agents": [
+     "timeline_builder",
+     "dependency_mapper",
+     "priority_ranker"
+    ]
+   },
+   {
+    "part": "5",
+    "rep": "2",
+    "tier": "degraded",
+    "agent_retries": 6,
+    "agent_cost_usd": 0.1309,
+    "fallback_agents": [
+     "risk_assessor",
+     "dependency_mapper",
+     "priority_ranker"
+    ]
+   }
+  ],
+  "cost_by_tier": {
+   "degraded": {
+    "n": 10,
+    "mean_usd": 0.1148
+   }
+  }
+ },
+ "bundle": {
+  "cell": "bundle",
+  "date": "2026-08-12",
+  "reps_graded": 10,
+  "agent": {
+   "logical_jobs": 128,
+   "attempts": 152,
+   "IAF": 1.1875,
+   "starvation_events_attempt1": 24,
+   "retries_issued": 24,
+   "recovered_by_retry": 19,
+   "unrecovered_final_empty": 5,
+   "transport_errors": 0,
+   "tokens_in": 312545,
+   "tokens_out": 1280739,
+   "tokens_reasoning": 1052064,
+   "cache_hit_tokens": 294912,
+   "cache_miss_tokens": 17633,
+   "cost_total_usd": 1.2502,
+   "cost_used_usd": 0.971,
+   "cost_discarded_usd": 0.2792,
+   "discarded_reasoning_tokens": 290183,
+   "discarded_output_tokens": 290183,
+   "ECI": 1.2876
+  },
+  "debate": {
+   "logical_jobs": 99,
+   "attempts": 103,
+   "IAF": 1.0404,
+   "starvation_events_attempt1": 4,
+   "retries_issued": 4,
+   "recovered_by_retry": 4,
+   "unrecovered_final_empty": 0,
+   "transport_errors": 0,
+   "tokens_in": 154362,
+   "tokens_out": 175691,
+   "tokens_reasoning": 153454,
+   "cache_hit_tokens": 43520,
+   "cache_miss_tokens": 110842,
+   "cost_total_usd": 0.22,
+   "cost_used_usd": 0.2058,
+   "cost_discarded_usd": 0.0142,
+   "discarded_reasoning_tokens": 12800,
+   "discarded_output_tokens": 12800,
+   "ECI": 1.0692
+  },
+  "rep_tiers": [
+   {
+    "part": "1",
+    "rep": "1",
+    "tier": "recovered_clean",
+    "agent_retries": 1,
+    "agent_cost_usd": 0.1112,
+    "fallback_agents": []
+   },
+   {
+    "part": "1",
+    "rep": "2",
+    "tier": "recovered_clean",
+    "agent_retries": 3,
+    "agent_cost_usd": 0.1385,
+    "fallback_agents": []
+   },
+   {
+    "part": "2",
+    "rep": "1",
+    "tier": "degraded",
+    "agent_retries": 2,
+    "agent_cost_usd": 0.1278,
+    "fallback_agents": [
+     "priority_ranker"
+    ]
+   },
+   {
+    "part": "2",
+    "rep": "2",
+    "tier": "degraded",
+    "agent_retries": 1,
+    "agent_cost_usd": 0.1128,
+    "fallback_agents": [
+     "dependency_mapper",
+     "recommendation_generator"
+    ]
+   },
+   {
+    "part": "3",
+    "rep": "1",
+    "tier": "recovered_clean",
+    "agent_retries": 4,
+    "agent_cost_usd": 0.1327,
+    "fallback_agents": []
+   },
+   {
+    "part": "3",
+    "rep": "2",
+    "tier": "recovered_clean",
+    "agent_retries": 4,
+    "agent_cost_usd": 0.1415,
+    "fallback_agents": []
+   },
+   {
+    "part": "4",
+    "rep": "1",
+    "tier": "degraded",
+    "agent_retries": 1,
+    "agent_cost_usd": 0.1103,
+    "fallback_agents": [
+     "priority_ranker"
+    ]
+   },
+   {
+    "part": "4",
+    "rep": "2",
+    "tier": "degraded",
+    "agent_retries": 4,
+    "agent_cost_usd": 0.1424,
+    "fallback_agents": [
+     "dependency_mapper"
+    ]
+   },
+   {
+    "part": "5",
+    "rep": "1",
+    "tier": "recovered_clean",
+    "agent_retries": 2,
+    "agent_cost_usd": 0.1113,
+    "fallback_agents": []
+   },
+   {
+    "part": "5",
+    "rep": "2",
+    "tier": "degraded",
+    "agent_retries": 2,
+    "agent_cost_usd": 0.1217,
+    "fallback_agents": [
+     "priority_ranker"
+    ]
+   }
+  ],
+  "cost_by_tier": {
+   "recovered_clean": {
+    "n": 5,
+    "mean_usd": 0.127
+   },
+   "degraded": {
+    "n": 5,
+    "mean_usd": 0.123
+   }
+  }
+ }
+}

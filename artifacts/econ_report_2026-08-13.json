@@ -1,0 +1,273 @@
+{
+ "kimi_reactive": {
+  "cell": "kimi_reactive",
+  "date": "2026-08-13",
+  "reps_graded": 8,
+  "agent": {
+   "logical_jobs": 99,
+   "attempts": 112,
+   "IAF": 1.1313,
+   "starvation_events_attempt1": 13,
+   "retries_issued": 13,
+   "recovered_by_retry": 12,
+   "unrecovered_final_empty": 1,
+   "transport_errors": 1,
+   "tokens_in": 217744,
+   "tokens_out": 667606,
+   "tokens_reasoning": 405264,
+   "cache_hit_tokens": 0,
+   "cache_miss_tokens": 0,
+   "cost_total_usd": 10.6673,
+   "cost_used_usd": 10.171,
+   "cost_discarded_usd": 0.4963,
+   "discarded_reasoning_tokens": 30337,
+   "discarded_output_tokens": 30376,
+   "ECI": 1.0488
+  },
+  "debate": {
+   "logical_jobs": 86,
+   "attempts": 161,
+   "IAF": 1.8721,
+   "starvation_events_attempt1": 76,
+   "retries_issued": 75,
+   "recovered_by_retry": 72,
+   "unrecovered_final_empty": 4,
+   "transport_errors": 3,
+   "tokens_in": 245959,
+   "tokens_out": 180143,
+   "tokens_reasoning": 152265,
+   "cache_hit_tokens": 0,
+   "cache_miss_tokens": 0,
+   "cost_total_usd": 3.44,
+   "cost_used_usd": 2.2158,
+   "cost_discarded_usd": 1.2242,
+   "discarded_reasoning_tokens": 57772,
+   "discarded_output_tokens": 58000,
+   "ECI": 1.5525
+  },
+  "rep_tiers": [
+   {
+    "part": "1",
+    "rep": "1",
+    "tier": "recovered_clean",
+    "agent_retries": 2,
+    "agent_cost_usd": 1.2529,
+    "fallback_agents": []
+   },
+   {
+    "part": "1",
+    "rep": "2",
+    "tier": "degraded",
+    "agent_retries": 1,
+    "agent_cost_usd": 1.2731,
+    "fallback_agents": [
+     "risk_assessor"
+    ]
+   },
+   {
+    "part": "2",
+    "rep": "1",
+    "tier": "recovered_clean",
+    "agent_retries": 2,
+    "agent_cost_usd": 1.3767,
+    "fallback_agents": []
+   },
+   {
+    "part": "2",
+    "rep": "2",
+    "tier": "recovered_clean",
+    "agent_retries": 2,
+    "agent_cost_usd": 1.439,
+    "fallback_agents": []
+   },
+   {
+    "part": "3",
+    "rep": "1",
+    "tier": "recovered_clean",
+    "agent_retries": 1,
+    "agent_cost_usd": 1.2534,
+    "fallback_agents": []
+   },
+   {
+    "part": "3",
+    "rep": "2",
+    "tier": "recovered_clean",
+    "agent_retries": 1,
+    "agent_cost_usd": 1.3759,
+    "fallback_agents": []
+   },
+   {
+    "part": "4",
+    "rep": "1",
+    "tier": "recovered_clean",
+    "agent_retries": 2,
+    "agent_cost_usd": 1.4393,
+    "fallback_agents": []
+   },
+   {
+    "part": "4",
+    "rep": "2",
+    "tier": "recovered_clean",
+    "agent_retries": 2,
+    "agent_cost_usd": 1.2571,
+    "fallback_agents": []
+   }
+  ],
+  "cost_by_tier": {
+   "recovered_clean": {
+    "n": 7,
+    "mean_usd": 1.342
+   },
+   "degraded": {
+    "n": 1,
+    "mean_usd": 1.2731
+   }
+  }
+ },
+ "kimi_bundle": {
+  "cell": "kimi_bundle",
+  "date": "2026-08-13",
+  "reps_graded": 10,
+  "agent": {
+   "logical_jobs": 130,
+   "attempts": 131,
+   "IAF": 1.0077,
+   "starvation_events_attempt1": 3,
+   "retries_issued": 1,
+   "recovered_by_retry": 1,
+   "unrecovered_final_empty": 2,
+   "transport_errors": 2,
+   "tokens_in": 250629,
+   "tokens_out": 882743,
+   "tokens_reasoning": 517942,
+   "cache_hit_tokens": 0,
+   "cache_miss_tokens": 0,
+   "cost_total_usd": 13.993,
+   "cost_used_usd": 13.9579,
+   "cost_discarded_usd": 0.0351,
+   "discarded_reasoning_tokens": 2297,
+   "discarded_output_tokens": 2300,
+   "ECI": 1.0025
+  },
+  "debate": {
+   "logical_jobs": 94,
+   "attempts": 95,
+   "IAF": 1.0106,
+   "starvation_events_attempt1": 1,
+   "retries_issued": 1,
+   "recovered_by_retry": 1,
+   "unrecovered_final_empty": 0,
+   "transport_errors": 0,
+   "tokens_in": 146911,
+   "tokens_out": 138336,
+   "tokens_reasoning": 104490,
+   "cache_hit_tokens": 0,
+   "cache_miss_tokens": 0,
+   "cost_total_usd": 2.5158,
+   "cost_used_usd": 2.462,
+   "cost_discarded_usd": 0.0538,
+   "discarded_reasoning_tokens": 3197,
+   "discarded_output_tokens": 3200,
+   "ECI": 1.0218
+  },
+  "rep_tiers": [
+   {
+    "part": "1",
+    "rep": "1",
+    "tier": "first_attempt_clean",
+    "agent_retries": 0,
+    "agent_cost_usd": 1.4602,
+    "fallback_agents": []
+   },
+   {
+    "part": "1",
+    "rep": "2",
+    "tier": "first_attempt_clean",
+    "agent_retries": 0,
+    "agent_cost_usd": 1.4007,
+    "fallback_agents": []
+   },
+   {
+    "part": "2",
+    "rep": "1",
+    "tier": "first_attempt_clean",
+    "agent_retries": 0,
+    "agent_cost_usd": 1.4524,
+    "fallback_agents": []
+   },
+   {
+    "part": "2",
+    "rep": "2",
+    "tier": "first_attempt_clean",
+    "agent_retries": 0,
+    "agent_cost_usd": 1.4552,
+    "fallback_agents": []
+   },
+   {
+    "part": "3",
+    "rep": "1",
+    "tier": "degraded",
+    "agent_retries": 0,
+    "agent_cost_usd": 1.0902,
+    "fallback_agents": [
+     "stakeholder_analyzer",
+     "recommendation_generator"
+    ]
+   },
+   {
+    "part": "3",
+    "rep": "2",
+    "tier": "first_attempt_clean",
+    "agent_retries": 0,
+    "agent_cost_usd": 1.4382,
+    "fallback_agents": []
+   },
+   {
+    "part": "4",
+    "rep": "1",
+    "tier": "first_attempt_clean",
+    "agent_retries": 0,
+    "agent_cost_usd": 1.3747,
+    "fallback_agents": []
+   },
+   {
+    "part": "4",
+    "rep": "2",
+    "tier": "first_attempt_clean",
+    "agent_retries": 0,
+    "agent_cost_usd": 1.4927,
+    "fallback_agents": []
+   },
+   {
+    "part": "5",
+    "rep": "1",
+    "tier": "first_attempt_clean",
+    "agent_retries": 0,
+    "agent_cost_usd": 1.4556,
+    "fallback_agents": []
+   },
+   {
+    "part": "5",
+    "rep": "2",
+    "tier": "recovered_clean",
+    "agent_retries": 1,
+    "agent_cost_usd": 1.3732,
+    "fallback_agents": []
+   }
+  ],
+  "cost_by_tier": {
+   "first_attempt_clean": {
+    "n": 8,
+    "mean_usd": 1.4412
+   },
+   "degraded": {
+    "n": 1,
+    "mean_usd": 1.0902
+   },
+   "recovered_clean": {
+    "n": 1,
+    "mean_usd": 1.3732
+   }
+  }
+ }
+}
