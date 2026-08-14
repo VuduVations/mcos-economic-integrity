@@ -50,8 +50,16 @@ _DEFAULT_RATE = RATES["deepseek"]
 # (verified per-ledger: for DeepSeek and Moonshot, reasoning_tokens is a subset
 # of output_tokens — per-row reasoning never exceeds output; for xAI, reasoning
 # rows exceed output by up to 64x, so it must be added to the billed basis).
-# Reasoning bills at the output rate — upper bound pending console reconciliation.
+# Reasoning bills at the output rate — confirmed exact against the xAI console
+# 2026-08-14 (RECONCILIATION_grok_2026-08-13.md).
 _SEPARATE_REASONING_MODELS = ("grok",)
+
+# Cached-input rates for providers where the discount is VERIFIED against the
+# provider's own billing (xAI: $0.50/M, proven exact via the API's
+# cost_in_usd_ticks field, live probe 2026-08-14). Models without an entry keep
+# the full-input-rate basis — deliberately, so already-published DeepSeek/Kimi
+# figures stay reproducible; their full-rate basis is stated as an upper bound.
+_CACHED_RATES = {"grok-4.6": 0.50}
 
 
 def cost_usd(row):
@@ -64,7 +72,15 @@ def cost_usd(row):
     billed_out = row["output_tokens"]
     if any(m in model for m in _SEPARATE_REASONING_MODELS):
         billed_out += row.get("reasoning_tokens") or 0
-    return (row["input_tokens"] / 1e6) * rate_in + (billed_out / 1e6) * rate_out
+    tok_in = row["input_tokens"]
+    cost_in = (tok_in / 1e6) * rate_in
+    cached = row.get("cache_hit_tokens") or 0
+    if cached:
+        for key, cached_rate in _CACHED_RATES.items():
+            if key in model:
+                cost_in = ((tok_in - cached) / 1e6) * rate_in + (cached / 1e6) * cached_rate
+                break
+    return cost_in + (billed_out / 1e6) * rate_out
 
 
 def load_ledger(cell, date):
