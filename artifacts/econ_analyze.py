@@ -39,8 +39,19 @@ HERE = Path(__file__).parent
 RATES = {
     "deepseek": (0.435, 0.87),   # DeepSeek direct
     "kimi-k3": (3.00, 15.00),    # Moonshot list; output includes reasoning
+    # xAI list (docs.x.ai, verified 2026-08-13), <200K-token prompt band —
+    # every call in this benchmark is far under the threshold.
+    "grok-4.6": (2.00, 6.00),
 }
 _DEFAULT_RATE = RATES["deepseek"]
+
+
+# Providers whose usage reports reasoning_tokens SEPARATELY from output_tokens
+# (verified per-ledger: for DeepSeek and Moonshot, reasoning_tokens is a subset
+# of output_tokens — per-row reasoning never exceeds output; for xAI, reasoning
+# rows exceed output by up to 64x, so it must be added to the billed basis).
+# Reasoning bills at the output rate — upper bound pending console reconciliation.
+_SEPARATE_REASONING_MODELS = ("grok",)
 
 
 def cost_usd(row):
@@ -50,7 +61,10 @@ def cost_usd(row):
         if key in model:
             rate_in, rate_out = rates
             break
-    return (row["input_tokens"] / 1e6) * rate_in + (row["output_tokens"] / 1e6) * rate_out
+    billed_out = row["output_tokens"]
+    if any(m in model for m in _SEPARATE_REASONING_MODELS):
+        billed_out += row.get("reasoning_tokens") or 0
+    return (row["input_tokens"] / 1e6) * rate_in + (billed_out / 1e6) * rate_out
 
 
 def load_ledger(cell, date):
@@ -191,8 +205,11 @@ def main():
     report = {}
     base_cells = ("reactive", "proactive", "pure_retry", "bundle")
     # Cross-model legs write ledgers as econ_<prefix>_<cell>_<date>.jsonl
-    # (e.g. kimi_reactive from the 2026-08-12 seed campaign).
-    cells = list(base_cells) + [f"kimi_{c}" for c in base_cells]
+    # (e.g. kimi_reactive from the 2026-08-12 seed campaign,
+    # grok_bundle from the 2026-08-13 xAI campaign).
+    cells = (list(base_cells)
+             + [f"kimi_{c}" for c in base_cells]
+             + [f"grok_{c}" for c in base_cells])
     for cell in cells:
         a = analyze_cell(cell, date)
         if a:
